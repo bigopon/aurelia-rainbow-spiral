@@ -1,0 +1,37 @@
+<template>
+  <require from='./app.css'></require>
+  <require from='./cursor.html'></require>
+  <style>
+    .control {
+      display: inline-block;
+      vertical-align: top;
+      width: 150px;
+      height: 50px;
+      color: #000;
+    }
+  </style>
+  <div style='height: 50px; background-color: #fff; text-align: center;'>
+    <!-- <label class='control'>
+      Throttle (${throttleValue}ms)<br/>
+      <input type='range' step='1' min='0' value.bind='throttleValue | number' />
+    </label> -->
+    <label class='control'>
+      Immutable<br/>
+      <input type='checkbox' checked.bind='immutable' />
+    </label>
+  </div>
+  <div
+    mousemove.delegate='setXY($event)'
+    mousedown.delegate='big = true'
+    mouseup.delegate='big = false'
+    style='height: calc(100% - 50px);'>
+
+    <cursor x.bind='x' y.bind='y' big.bind='big' label='true' color.bind='color'></cursor>
+    <cursor repeat.for='cursor of cursors'
+      x.bind='cursor.x'
+      y.bind='cursor.y'
+      big.bind='cursor.big'
+      color.bind='cursor.color'></cursor>
+  </div>
+  
+</template>
